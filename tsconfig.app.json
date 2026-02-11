@@ -6,7 +6,13 @@
     "outDir": "./out-tsc/app",
     "types": [
       "node"
-    ]
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@toast-ui/editor": [
+        "node_modules/@toast-ui/editor/types/index.d.ts"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts"

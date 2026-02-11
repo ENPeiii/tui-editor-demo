@@ -1,3 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "tailwindcss";
+
+/* TUI Editor 程式碼區塊使用 Fira Code 字體 */
+.toastui-editor-contents pre,
+.toastui-editor-contents code,
+.toastui-editor-md-preview pre,
+.toastui-editor-md-preview code,
+.toastui-editor-md-code-block,
+.toastui-editor-md-code-block-line-background,
+.toastui-editor-ww-code-block,
+.ProseMirror pre,
+.ProseMirror code,
+pre[class*="language-"],
+code[class*="language-"] {
+  font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* 啟用連字功能 */
+}
