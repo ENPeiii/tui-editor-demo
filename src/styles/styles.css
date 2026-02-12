@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+/* TUI Editor 和 Prism 樣式已在 angular.json 中載入 */
 
 @import "tailwindcss";
+
+
 
 /* TUI Editor 程式碼區塊使用 Fira Code 字體 */
 .toastui-editor-contents pre,

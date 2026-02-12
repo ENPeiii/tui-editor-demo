@@ -1,16 +1,8 @@
 /**
  * 載入 TUI Editor (編輯器)
+ * CSS 已在 styles.css 中全局載入，這裡只負責載入 JS 模組
  */
 export async function loadTuiEditor() {
-  // 載入樣式
-  await Promise.all([
-    import('@toast-ui/editor/dist/toastui-editor.css'),
-    import('@toast-ui/editor/dist/theme/toastui-editor-dark.css'),
-    import('prism-themes/themes/prism-holi-theme.css'),
-    import('@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css'),
-    import('@toast-ui/editor-plugin-table-merged-cell/dist/toastui-editor-plugin-table-merged-cell.css'),
-  ]);
-
   // 動態載入核心套件
   const [Editor, codeSyntaxHighlight, tableMergedCell, Prism] = await Promise.all([
     import('@toast-ui/editor').then((m) => m.default),
@@ -32,18 +24,9 @@ export async function loadTuiEditor() {
 
 /**
  * 載入 TUI Viewer (唯讀檢視器，含複製按鈕)
+ * CSS 已在 styles.css 中全局載入，這裡只負責載入 JS 模組
  */
 export async function loadTuiViewer() {
-  // 載入樣式
-  await Promise.all([
-    import('@toast-ui/editor/dist/toastui-editor.css'),
-    import('@toast-ui/editor/dist/theme/toastui-editor-dark.css'),
-    import('prism-themes/themes/prism-holi-theme.css'),
-    import('@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css'),
-    import('@toast-ui/editor-plugin-table-merged-cell/dist/toastui-editor-plugin-table-merged-cell.css'),
-    import('prismjs/plugins/toolbar/prism-toolbar.css'),
-  ]);
-
   // 動態載入核心套件
   const [Viewer, codeSyntaxHighlight, tableMergedCell, Prism] = await Promise.all([
     import('@toast-ui/editor/dist/toastui-editor-viewer').then((m) => m.default),
