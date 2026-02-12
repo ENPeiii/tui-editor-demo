@@ -13,12 +13,12 @@ export class MdViewer {
   constructor() {
     afterNextRender(async () => {
       // 動態載入 Viewer
-      const { Viewer, codeSyntaxHighlight, Prism } = await loadTuiViewer();
+      const { Viewer, codeSyntaxHighlight, tableMergedCell, Prism } = await loadTuiViewer();
 
       new Viewer({
         el: this.viewerElement.nativeElement,
         initialValue: this.content(),
-        plugins: [[codeSyntaxHighlight, { highlighter: Prism }]],
+        plugins: [[codeSyntaxHighlight, { highlighter: Prism }], tableMergedCell],
         theme: 'dark', // 啟用深色主題
       });
 

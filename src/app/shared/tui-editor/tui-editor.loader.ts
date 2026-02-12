@@ -8,12 +8,14 @@ export async function loadTuiEditor() {
     import('@toast-ui/editor/dist/theme/toastui-editor-dark.css'),
     import('prism-themes/themes/prism-holi-theme.css'),
     import('@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css'),
+    import('@toast-ui/editor-plugin-table-merged-cell/dist/toastui-editor-plugin-table-merged-cell.css'),
   ]);
 
   // 動態載入核心套件
-  const [Editor, codeSyntaxHighlight, Prism] = await Promise.all([
+  const [Editor, codeSyntaxHighlight, tableMergedCell, Prism] = await Promise.all([
     import('@toast-ui/editor').then((m) => m.default),
     import('@toast-ui/editor-plugin-code-syntax-highlight').then((m) => m.default),
+    import('@toast-ui/editor-plugin-table-merged-cell').then((m) => m.default),
     import('prismjs').then((m) => m.default),
   ]);
 
@@ -25,7 +27,7 @@ export async function loadTuiEditor() {
     import('prismjs/components/prism-json.js'),
   ]);
 
-  return { Editor, codeSyntaxHighlight, Prism };
+  return { Editor, codeSyntaxHighlight, tableMergedCell, Prism };
 }
 
 /**
@@ -38,13 +40,15 @@ export async function loadTuiViewer() {
     import('@toast-ui/editor/dist/theme/toastui-editor-dark.css'),
     import('prism-themes/themes/prism-holi-theme.css'),
     import('@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css'),
+    import('@toast-ui/editor-plugin-table-merged-cell/dist/toastui-editor-plugin-table-merged-cell.css'),
     import('prismjs/plugins/toolbar/prism-toolbar.css'),
   ]);
 
   // 動態載入核心套件
-  const [Viewer, codeSyntaxHighlight, Prism] = await Promise.all([
+  const [Viewer, codeSyntaxHighlight, tableMergedCell, Prism] = await Promise.all([
     import('@toast-ui/editor/dist/toastui-editor-viewer').then((m) => m.default),
     import('@toast-ui/editor-plugin-code-syntax-highlight').then((m) => m.default),
+    import('@toast-ui/editor-plugin-table-merged-cell').then((m) => m.default),
     import('prismjs').then((m) => m.default),
   ]);
 
@@ -60,5 +64,5 @@ export async function loadTuiViewer() {
     import('prismjs/components/prism-json.js'),
   ]);
 
-  return { Viewer, codeSyntaxHighlight, Prism };
+  return { Viewer, codeSyntaxHighlight, tableMergedCell, Prism };
 }

@@ -40,7 +40,7 @@ export class MdEditor {
     // 🚀 關鍵：afterNextRender 保證只在瀏覽器執行
     afterNextRender(async () => {
       // 動態載入套件，避免伺服器端編譯錯誤
-      const { Editor, codeSyntaxHighlight, Prism } = await loadTuiEditor();
+      const { Editor, codeSyntaxHighlight, tableMergedCell, Prism } = await loadTuiEditor();
 
       this.editor = new Editor({
         el: this.editorElement.nativeElement,
@@ -49,11 +49,14 @@ export class MdEditor {
         previewStyle: 'vertical',
         initialValue: `# Hello Angular 21! \n ## 標題一 \n - item1 \n - item2 \n **粗體** *斜體* \n\`\`\`html\n<div id="editor"><span>baz</span></div>\n\`\`\`
         `,
-        plugins: [[codeSyntaxHighlight, { highlighter: Prism }]],
+        plugins: [[codeSyntaxHighlight, { highlighter: Prism }], tableMergedCell],
         theme: 'dark',
         hooks: {
           // 攔截圖片上傳，改為上傳到後端 API
-          addImageBlobHook: async (blob: Blob, callback: (url: string, altText?: string) => void) => {
+          addImageBlobHook: async (
+            blob: Blob,
+            callback: (url: string, altText?: string) => void,
+          ) => {
             try {
               const imageUrl = await this.uploadImage(blob);
               // callback 會將圖片 URL 插入到編輯器中
@@ -90,7 +93,7 @@ export class MdEditor {
    */
   private async uploadImage(blob: Blob): Promise<string> {
     const formData = new FormData();
-    
+
     // 產生檔名（使用時間戳記 + 原始副檔名）
     const extension = blob.type.split('/')[1] || 'png';
     const fileName = `image_${Date.now()}.${extension}`;
@@ -99,9 +102,7 @@ export class MdEditor {
     // TODO: 請將這裡換成你的後端 API URL
     const apiUrl = '/api/upload/image';
 
-    const response = await firstValueFrom(
-      this.http.post<{ url: string }>(apiUrl, formData)
-    );
+    const response = await firstValueFrom(this.http.post<{ url: string }>(apiUrl, formData));
 
     // 假設後端回傳 { url: 'https://your-server.com/images/xxx.png' }
     return response.url;
