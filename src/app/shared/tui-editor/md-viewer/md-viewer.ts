@@ -2,7 +2,7 @@ import { afterNextRender, Component, ElementRef, input, ViewChild } from '@angul
 import { loadTuiViewer } from '../tui-editor.loader';
 
 @Component({
-  selector: 'app-md-viewer',
+  selector: 'md-viewer',
   imports: [],
   template: `<div #viewerElement></div>`,
   styles: [],

@@ -13,7 +13,7 @@ import { loadTuiEditor } from '../tui-editor.loader';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-md-editor',
+  selector: 'md-editor',
   imports: [],
   template: `
     <div #editorElement></div>
